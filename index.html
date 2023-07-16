@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To Do List</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="light-mode">
+  <div class="text-center d-block w-100 pt-2 mb-2">
+      <h1>To-do List</h1>
+  </div>
+  <div class="content">
+	<div id="todo_app" class="box-section">
+		<div class="add-task">
+		<input class="add-input" type="text" v-model="newTask" placeholder="Enter a Task" 
+		:class="{'has-error':submitting&&invalidName}"
+		@focus="clearStatus"
+		@keypress="clearStatus"
+		ref="firstInput">
+		<button class="action-btn" @click="addTask">+</button>
+		</div>
+		<p class="error-message" v-if="submitting && error">Input field empty</p>
+		<p class="success-message" v-if="success">Task Added Successfully</p>
+		<div class="table-responsive">
+		<table v-if="taskExists">
+			<thead>
+				<tr>
+					<th class="column-1">Sl.No</th>
+					<th class="column-2">Task</th>
+					<th class="column-3">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(task,index) in tasks" :key="index" :class="{'has-completed':task.status=='completed'}">
+					<td class="column-1">{{index+1}}</td>
+					<td class="column-2">{{task.name}}</td>
+					<td class="column-3">
+						<div class="column-action">
+							<button class="action-btn check-btn" v-if="task.status=='created'" @click="completeTask(index)">&check;</button>
+							<button class="action-btn" @click="removeTask(index)">&times;</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		<p v-else class="no-task text-center">No Task</p>
+		</div>
+		<button class="clear-history" v-if="taskExists" @click="clearLocalStorage">Clear All Tasks</button>
+	</div>
+  </div>
+	<div class="text-center d-block w-100 mt-2 mb-2">
+	  <h4 class="mb-1">Developed by Rajkumar</h4>
+	  <div class="profile_icons">
+	    <a href="https://github.com/rajkumar-ravichandiran/" target="_blank"><img src="assets/github.png" class="icons"></a>
+	    <a href="https://www.linkedin.com/in/rajkumar-ravichandiran" target="_blank"><img src="assets/linkedin.png" class="icons"></a>
+	  </div>
+	</div>
+	<script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+	<script type="text/javascript" src="assets/main.js"></script>
+</body>
+</html
