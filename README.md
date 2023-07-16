@@ -2,6 +2,8 @@
 
 This is a simple to-do list application built using Vue.js, with features such as adding, deleting, and completing tasks. The application also utilizes local storage to persist tasks even after page reload. Additionally, there is an option to clear all tasks from the local storage.
 
+![To-Do List App](assets/to-do-list.gif)
+
 ## Features
 
 - Add tasks: Enter a task in the input field and click "Add Button" to add it to the to-do list.
